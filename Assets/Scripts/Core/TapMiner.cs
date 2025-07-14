@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class TapMiner : MonoBehaviour
 {
-    MainScr main;
+    private MainScr _main;
     private void Start()
     {
-        main = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<MainScr>();
+        _main = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<MainScr>();
     }
 
     public void IncreaseInOil(int oilCountPlus, int TapScale)
     {
-        main.OilCount += oilCountPlus * TapScale;
-        main.RefreshStats();
+        _main.OilCount += oilCountPlus * TapScale;
+        _main.RefreshStats();
     }
 
     private void OnMouseDown()
     {
-        transform.localScale *= 1.01f;
-        IncreaseInOil(1, main.TapScale);
+        IncreaseInOil(1, _main.TapScale);
     }
     private void OnMouseUp()
     {
-        transform.localScale /= 1.01f;
+        
     }
 
 }
