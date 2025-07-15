@@ -20,9 +20,4 @@ public class TapMiner : MonoBehaviour
     {
         IncreaseInOil(1, _main.TapScale);
     }
-    private void OnMouseUp()
-    {
-        
-    }
-
 }

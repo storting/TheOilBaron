@@ -5,36 +5,48 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class ListOfCompanies : MonoBehaviour
 {
-    CompanyBuyOil Gasproff;
-    CompanyBuyOil Lukoshnik;
-    CompanyBuyOil Rospechenka;
-    CompanyBuyOil Surgutka;
-    CompanyBuyOil Bashmachnik;
-    CompanyBuyOil Navatonium;
-    CompanyBuyOil Russkopompas;
-    CompanyBuyOil Tatorium;
+    public float TimeRefreshStats = 30f;
 
-    CompanyBuyOil Slavneftepioner;
-    CompanyBuyOil Yakutparadisel;
-    CompanyBuyOil Nizhgribny;
-    CompanyBuyOil Tatrefinans;
-    CompanyBuyOil Ikrutimetchel;
+    public CompanyBuyOil Gasproff;
+    public CompanyBuyOil Lukoshnik;
+    public CompanyBuyOil Rospechenka;
+    public CompanyBuyOil Surgutka;
+    public CompanyBuyOil Bashmachnik;
+    public CompanyBuyOil Navatonium;
+    public CompanyBuyOil Russkopompas;
+    public CompanyBuyOil Tatorium;
 
-    private void Start()
+    public CompanyBuyOil Slavneftepioner;
+    public CompanyBuyOil Yakutparadisel;
+    public CompanyBuyOil Nizhgribny;
+    public CompanyBuyOil Tatrefinans;
+    public CompanyBuyOil Ikrutimetchel;
+
+    private void Awake()
     {
-        InvokeRepeating("RefreshCompanyStats", 0f, 20f);
+        Gasproff = new CompanyBuyOil(1);
+        Debug.Log(Gasproff.CunBuyOilCount);
+        Lukoshnik = new CompanyBuyOil(1);
+        Rospechenka = new CompanyBuyOil(2);
+        Surgutka = new CompanyBuyOil(2);
+        Bashmachnik = new CompanyBuyOil(3);
+        Navatonium = new CompanyBuyOil(3);
+        Russkopompas = new CompanyBuyOil(3);
+        Tatorium = new CompanyBuyOil(3);
+        InvokeRepeating("RefreshCompanyStats", 10f, TimeRefreshStats);
     }
 
     private void RefreshCompanyStats()
     {
         Gasproff = new CompanyBuyOil(1);
+        Debug.Log(Gasproff.CunBuyOilCount);
         Lukoshnik = new CompanyBuyOil(1);
-        Rospechenka = new CompanyBuyOil(1);
-        Surgutka = new CompanyBuyOil(1);
-        Bashmachnik = new CompanyBuyOil(2);
-        Navatonium = new CompanyBuyOil(2);
-        Russkopompas = new CompanyBuyOil(2);
-        Tatorium = new CompanyBuyOil(2);
+        Rospechenka = new CompanyBuyOil(2);
+        Surgutka = new CompanyBuyOil(2);
+        Bashmachnik = new CompanyBuyOil(3);
+        Navatonium = new CompanyBuyOil(3);
+        Russkopompas = new CompanyBuyOil(3);
+        Tatorium = new CompanyBuyOil(3);
 
         Slavneftepioner = new CompanyBuyOil(3);
         Yakutparadisel = new CompanyBuyOil(3);

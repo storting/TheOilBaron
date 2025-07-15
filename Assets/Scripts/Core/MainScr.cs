@@ -19,11 +19,11 @@ public class MainScr : MonoBehaviour
     {
         data = gameObject.GetComponent<Data>();
         data.LoadData();
-        _moneyCounter = GameObject.FindGameObjectWithTag("MoneyCounter").GetComponent<Text>();
-        _moneyCounter.text = "$ " +MoneyCount.ToString();
-
         _oilCounter = GameObject.FindGameObjectWithTag("OilCounter").GetComponent<Text>();
         _oilCounter.text = OilCount.ToString() + " .i.";
+
+        _moneyCounter = GameObject.FindGameObjectWithTag("MoneyCounter").GetComponent<Text>();
+        _moneyCounter.text = "$ " +MoneyCount.ToString();
     }
 
     private void Update()
@@ -34,7 +34,7 @@ public class MainScr : MonoBehaviour
     public void RefreshStats()
     {  
         _oilCounter.text = OilCount.ToString() + " .i.";
-        _moneyCounter.text = MoneyCount.ToString() + " .i.";
+        _moneyCounter.text = "$ " + MoneyCount.ToString();
     }
     private void OnApplicationQuit()
     {

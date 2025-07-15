@@ -204,7 +204,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 139441}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2141202302}
+        m_TargetAssemblyTypeName: ConvertorScript, Assembly-CSharp
+        m_MethodName: ConvertOilToMoney
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &139441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,7 +955,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 119132514}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2102558972}
+        m_TargetAssemblyTypeName: ConvertorScript, Assembly-CSharp
+        m_MethodName: ConvertOilToMoney
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &119132514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2293,7 +2317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000000000000000000000000000
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -5395,7 +5419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000000000000000000000000000
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -6073,6 +6097,7 @@ GameObject:
   - component: {fileID: 1049474749}
   - component: {fileID: 1049474750}
   - component: {fileID: 1049474751}
+  - component: {fileID: 1049474752}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: EventSystem
@@ -6172,6 +6197,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MineScale: 1
   OilCountMine: 1
+--- !u!114 &1049474752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049474745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1011cc50ca8a04aa4ac55d4c6fc612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeRefreshStats: 30
 --- !u!1 &1054075963
 GameObject:
   m_ObjectHideFlags: 0
@@ -7257,8 +7295,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 139439}
   - {fileID: 2141202298}
+  - {fileID: 139439}
   m_Father: {fileID: 1022000455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7316,7 +7354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91517505effd2f64a9d12b3736e7d9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numbers2: 0100000001000000
+  CompanyName: 
 --- !u!1 &1265648612
 GameObject:
   m_ObjectHideFlags: 0
@@ -7560,7 +7598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_BlockingObjects: 3
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -7599,7 +7637,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 963194227}
   m_PlaneDistance: 5.62
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -7670,7 +7708,7 @@ Transform:
   m_GameObject: {fileID: 1354083458}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.356372, y: 5.1495337, z: -10.87}
+  m_LocalPosition: {x: -0.356372, y: 5.1495337, z: -10.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8266,7 +8304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000000000000000000000000000
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -8534,7 +8572,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000000000000000000000000000
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -10386,7 +10424,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000000000000000000000000000
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -10730,7 +10768,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000000000000000000000000000
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -11300,6 +11338,8 @@ GameObject:
   - component: {fileID: 2102558968}
   - component: {fileID: 2102558970}
   - component: {fileID: 2102558969}
+  - component: {fileID: 2102558971}
+  - component: {fileID: 2102558972}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -11346,7 +11386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000000000000000000000000000
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -11423,6 +11463,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102558967}
   m_CullTransparentMesh: 1
+--- !u!114 &2102558971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102558967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91517505effd2f64a9d12b3736e7d9eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CompanyName: Lukoshnik
+--- !u!114 &2102558972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102558967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af719b7b10f5fc149a41d5c23b5373cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2107833207
 GameObject:
   m_ObjectHideFlags: 0
@@ -11568,6 +11633,8 @@ GameObject:
   - component: {fileID: 2141202298}
   - component: {fileID: 2141202300}
   - component: {fileID: 2141202299}
+  - component: {fileID: 2141202301}
+  - component: {fileID: 2141202302}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -11614,7 +11681,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000000000000000000000000000
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -11691,6 +11758,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141202297}
   m_CullTransparentMesh: 1
+--- !u!114 &2141202301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141202297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91517505effd2f64a9d12b3736e7d9eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CompanyName: Gasproff
+--- !u!114 &2141202302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141202297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af719b7b10f5fc149a41d5c23b5373cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
