@@ -10,7 +10,12 @@ public class MainScr : MonoBehaviour
     public int OilCount;
     public int TapScale = 1;
 
-    public int UserLevel;
+    public int UserLevelCompany;
+
+    public int Charisma = 1;
+    public int Erudition = 1;
+    public int Intelligence = 1;
+    public int Eloquence = 1;
 
     private TMP_Text _oilCounter;
     private TMP_Text _moneyCounter;
