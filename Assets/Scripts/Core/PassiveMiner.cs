@@ -9,17 +9,30 @@ public class PassiveMiner : MonoBehaviour
     public float MineScale = 1f;
     public int OilCountMine = 1;
 
-    private MainScr _main;
+    [SerializeField] private Player player;
+
+    void Awake()
+    {
+        if (player == null)
+        {
+            player = FindObjectOfType<Player>();
+
+            if (player == null)
+            {
+                Debug.LogError("Player не найден на сцене!");
+                return;
+            }
+        }
+    }
+
     private void Start()
     {
-        _main = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<MainScr>();
         InvokeRepeating("OilPassiveFarm", 0, 18);
     }
 
     private void OilPassiveFarm()
     {
         float temp = OilCountMine * MineScale;
-        _main.OilCount += Mathf.RoundToInt(temp);
-        _main.RefreshStats();
+        player.OilCount += Mathf.RoundToInt(temp);
     }
 }

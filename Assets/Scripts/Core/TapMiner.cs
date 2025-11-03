@@ -7,21 +7,29 @@ using UnityEngine.UI;
 
 public class TapMiner : MonoBehaviour
 {
-    private MainScr _main;
+    [SerializeField] private Player player;
 
-    private void Start()
+    void Awake()
     {
-        _main = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<MainScr>();
+        if (player == null)
+        {
+            player = FindObjectOfType<Player>();
+
+            if (player == null)
+            {
+                Debug.LogError("Player не найден на сцене!");
+                return;
+            }
+        }
     }
 
     public void IncreaseInOil(int oilCountPlus, int TapScale)
     {
-        _main.OilCount += oilCountPlus * TapScale;
-        _main.RefreshStats();
+        player.OilCount += oilCountPlus * TapScale;
     }
 
     public void OnPointerDown()
     {
-        IncreaseInOil(1, _main.TapScale);
+        IncreaseInOil(1, player.TapScale);
     }
 }

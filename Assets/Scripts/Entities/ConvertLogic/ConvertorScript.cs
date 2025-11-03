@@ -7,13 +7,27 @@ using UnityEngine.UI;
 
 public class ConvertorScript : MonoBehaviour
 {
-    private MainScr _mainScr;
     private ListOfCompanies _companies;
     private string _companiesName;
 
+    [SerializeField] private Player player;
+
+    void Awake()
+    {
+        if (player == null)
+        {
+            player = FindObjectOfType<Player>();
+
+            if (player == null)
+            {
+                Debug.LogError("Player не найден на сцене!");
+                return;
+            }
+        }
+    }
+
     private void Start()
     {
-        _mainScr = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<MainScr>();
         _companiesName = gameObject.GetComponent<InsertCompany>().CompanyName;
     }
 
@@ -31,25 +45,24 @@ public class ConvertorScript : MonoBehaviour
     }
     private void tempCompany(CompanyBuyOil comp)
     {
-        if (_mainScr.OilCount > 0)
+        if (player.OilCount > 0)
         {
             float temp = 0;
-            if ((_mainScr.OilCount - comp.CunBuyOilCount) >= 0)
+            if ((player.OilCount - comp.CunBuyOilCount) >= 0)
             {
-                _mainScr.OilCount = _mainScr.OilCount - comp.CunBuyOilCount;
+                player.OilCount = player.OilCount - comp.CunBuyOilCount;
                 temp = comp.CunBuyOilCount * comp.PriceOil;
-                _mainScr.MoneyCount += Convert.ToInt32(temp);
+                player.MoneyCount += Convert.ToInt32(temp);
                 comp.CunBuyOilCount = 0;
             }
             else
             {
-                temp = _mainScr.OilCount * comp.PriceOil;
-                comp.CunBuyOilCount -= _mainScr.OilCount;
-                _mainScr.OilCount = 0;
-                _mainScr.MoneyCount += Convert.ToInt32(temp);
+                temp = player.OilCount * comp.PriceOil;
+                comp.CunBuyOilCount -= player.OilCount;
+                player.OilCount = 0;
+                player.MoneyCount += Convert.ToInt32(temp);
                 
             }
-            _mainScr.RefreshStats();
         }
         else
         {
