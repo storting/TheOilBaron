@@ -17,22 +17,3 @@ Fans of economic strategies and business simulators.
 Those interested in experiencing competition and growing large enterprises.
 Anyone eager to try themselves as entrepreneurs and test their ability to manage complex economic systems.
 Join the world of big money and endless opportunities together with *"TheOilBaron"!*
-
----
-
-**Ссылки на документы**
-- [Vision Document](Vision.md) - Замысел и цели игры
-- [Game Design Document](GDD.md) - Все игровые механики
-- [Technical Documentation](TechDoc.md) - Архитектура и код
-- [Roadmap](Roadmap.md) - Текущие задачи и планы
-
-**Контакты**
-- Вопросы по дизайну: [Твое имя]
-- Вопросы по арту: [Художник, если есть]
-- Технические вопросы: [Твое имя]
-
-**Важные замечания**
-- Проект на Unity 2022 LTS
-- Целевые платформы: iOS/Android (вертикальный)
-- Основной язык: C#
-
