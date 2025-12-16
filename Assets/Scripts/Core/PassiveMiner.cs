@@ -30,7 +30,7 @@ public class PassiveMiner : MonoBehaviour
         InvokeRepeating("OilPassiveFarm", 0, 18);
     }
 
-    private void OilPassiveFarm()
+    private void OilPassiveFarm() //Пассивный фарм(позже завязать на насосе)
     {
         float temp = OilCountMine * MineScale;
         player.OilCount += Mathf.RoundToInt(temp);

@@ -37,7 +37,7 @@ public class PlayerLoyaltyStats : MonoBehaviour
         switch (StatName) 
         {
             case "Charisma":
-                _LVLText.text += player .Charisma.ToString();
+                _LVLText.text += player.Charisma.ToString();
                 _priceText.text += StatPrice.ToString();
                 break;
             case "Erudition":

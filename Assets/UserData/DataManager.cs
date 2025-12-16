@@ -12,22 +12,20 @@ public class DataManager : MonoBehaviour
     private static readonly string SAVE_FOLDER = "UserData/UserStats";
     private static readonly string FILE_EXTENSION = ".dat";
 
+
+    //Сохранить 
     public static void SaveData(object data, string saveName)
     {
         try
         {
-            // 1. Создаем папку если нужно
             string saveDir = GetSaveDirectory();
             if (!Directory.Exists(saveDir))
                 Directory.CreateDirectory(saveDir);
 
-            // 2. Преобразуем объект в JSON
             string jsonData = JsonUtility.ToJson(data, true);
 
-            // 3. Шифруем данные
             string encryptedData = EncryptData(jsonData);
 
-            // 4. Сохраняем в файл
             string filePath = GetFilePath(saveName);
             File.WriteAllText(filePath, encryptedData);
 
@@ -50,6 +48,7 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.Save();***/
     }
 
+    //Загрузить
     public static T LoadData<T>(string saveName) where T : new()
     {
 
@@ -57,24 +56,21 @@ public class DataManager : MonoBehaviour
         {
             string filePath = GetFilePath(saveName);
 
-            // Проверяем существует ли файл
             if (!File.Exists(filePath))
             {
                 Debug.LogWarning($"попытка загрузки - Файл не найден: {filePath}");
-                return new T(); // Возвращаем новый объект
+                return new T(); 
             }
 
-            // Читаем и расшифровываем данные
             string encryptedData = File.ReadAllText(filePath);
             string jsonData = DecryptData(encryptedData);
 
-            // Преобразуем JSON в объект
             return JsonUtility.FromJson<T>(jsonData);
         }
         catch (Exception e)
         {
             Debug.LogError($"Ошибка загрузки: {e.Message}");
-            return new T(); // Возвращаем новый объект при ошибке
+            return new T(); 
         }
 
         /***UserBaseData
@@ -124,18 +120,17 @@ public class DataManager : MonoBehaviour
         char[] chars = input.ToCharArray();
         for (int i = 0; i < chars.Length; i++)
         {
-            chars[i] = (char)(chars[i] ^ key[i % key.Length]); // Используем XOR
+            chars[i] = (char)(chars[i] ^ key[i % key.Length]);
         }
         return new string(chars);
     }
 
     private static string UnscrambleString(string input, string key)
     {
-        // XOR обратим - тот же метод что и для шифрования
         return ScrambleString(input, key);
     }
 
-    // Удалить файл сохранения
+    // Удалить
     public void DeleteSave()
     {
         string filePath = Path.Combine(Application.persistentDataPath, FILE_EXTENSION);

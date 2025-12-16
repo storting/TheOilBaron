@@ -15,7 +15,7 @@ public class MainScr : MonoBehaviour
     {
         if (player == null)
         {
-            player = FindObjectOfType<Player>();
+            player = FindObjectOfType<Player>(); //Тэйк базового скрипта игрока
 
             if (player == null)
             {
@@ -37,7 +37,7 @@ public class MainScr : MonoBehaviour
         _moneyCounter.text = player.MoneyCount.ToString();
     }
 
-    private void OnApplicationQuit()
+    private void OnApplicationQuit() //События при выходе из игры
     {
         Player save = player.GetSaveData();
         Debug.Log(save);
@@ -52,7 +52,7 @@ public class MainScr : MonoBehaviour
         _oilCounter.text = NewOil.ToString();
     }
 
-    public void OilMoneyBaf()
+    public void OilMoneyBaf() //Для тестов
     {
         player.OilCount += 1000;
         player.MoneyCount += 1000;

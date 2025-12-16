@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _moneyCount;
+    [SerializeField] private int _moneyCount; //количество денег
     public int MoneyCount
     {
         get => _moneyCount;
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
             if (_moneyCount != value)
             {
                 _moneyCount = value;
-                OnMoneyCountChanged?.Invoke(_moneyCount);
+                OnMoneyCountChanged?.Invoke(_moneyCount); //событие для переменной
                 if (_moneyCount >= 1000 && _moneyCount <= 1001)
                 {
                     Debug.Log("достижение - ТЫСЯЧА ДЕНЕЕЕГ!!!");
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     }
     public event System.Action<int> OnMoneyCountChanged;
 
-    [SerializeField] private int _oilCount;
+    [SerializeField] private int _oilCount; //количество нефти
     public int OilCount
     {
         get => _oilCount;
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
             if (_oilCount != value)
             {
                 _oilCount = value;
-                OnOilCountChanged?.Invoke(_oilCount);
+                OnOilCountChanged?.Invoke(_oilCount); //событие для переменной
                 if (_oilCount >= 1000 && _oilCount <= 1001)
                 {
                     Debug.Log("достижение - ТЫСЯЧА НЕФТИИИ!!!");
@@ -43,16 +43,17 @@ public class Player : MonoBehaviour
     }
     public event System.Action<int> OnOilCountChanged;
 
-    public int TapScale = 1;
+    public int TapScale = 1; //количество нефти за тап
 
-    public int UserLevelCompany = 1;
+    public int UserLevelCompany = 1; 
 
-    public int Charisma = 1;
-    public int Erudition = 1;
-    public int Intelligence = 1;
-    public int Eloquence = 1;
-
-    public Player GetSaveData()
+    public int Charisma = 1; //Харизма
+    public int Erudition = 1; //Эрудиция
+    public int Intelligence = 1; //Интелект
+    public int Eloquence = 1; //Красноречие
+    //В дальнейшем влияет на лояльность компании
+    
+    public Player GetSaveData() //Выгрузить данные
     {
         return new Player
         {
@@ -67,7 +68,7 @@ public class Player : MonoBehaviour
         };
     }
 
-    public void LoadFromData(Player data)
+    public void LoadFromData(Player data) //Загрузить данные
     {
         MoneyCount = data.MoneyCount;
         OilCount = data.OilCount;

@@ -36,6 +36,8 @@ public class ListOfCompanies : MonoBehaviour
         InvokeRepeating("RefreshCompanyStats", 10f, TimeRefreshStats);
     }
 
+    //Список компаний, их рестарт
+
     private void RefreshCompanyStats()
     {
         Gasproff = new CompanyBuyOil(1);

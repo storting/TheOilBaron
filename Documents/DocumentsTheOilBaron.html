@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Oil Baron - Документация проекта</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            background: var(--light);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+
+        .nav-tab:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2 i {
+            color: var(--secondary);
+        }
+
+        .card h3 {
+            color: var(--dark);
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .priority-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .priority-list li {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            background: var(--light);
+            border-left: 4px solid;
+        }
+
+        .priority-high {
+            border-left-color: var(--accent) !important;
+            background: rgba(231, 76, 60, 0.1) !important;
+        }
+
+        .priority-medium {
+            border-left-color: var(--warning) !important;
+            background: rgba(243, 156, 18, 0.1) !important;
+        }
+
+        .priority-low {
+            border-left-color: var(--success) !important;
+            background: rgba(39, 174, 96, 0.1) !important;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .code-comment {
+            color: #718096;
+        }
+
+        .code-keyword {
+            color: #63b3ed;
+        }
+
+        .code-class {
+            color: #68d391;
+        }
+
+        .code-string {
+            color: #fbb6ce;
+        }
+
+        /* Architecture Tree */
+        .tree {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--light);
+        }
+
+        .tree-item {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: rgba(236, 240, 241, 0.5);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .tree-item:hover {
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .tree-item .icon {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-primary {
+            background: rgba(52, 152, 219, 0.2);
+            color: var(--secondary);
+        }
+
+        .badge-success {
+            background: rgba(39, 174, 96, 0.2);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: rgba(243, 156, 18, 0.2);
+            color: var(--warning);
+        }
+
+        .badge-danger {
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--accent);
+        }
+
+        /* Project Info */
+        .project-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .info-item .label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item .value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .project-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-oil-can"></i> The Oil Baron</h1>
+            <div class="subtitle">Бизнес-кликер и симулятор жизни нефтяного магната</div>
+        </div>
+
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showSection('vision')">
+                    <i class="fas fa-eye"></i> Vision
+                </button>
+                <button class="nav-tab" onclick="showSection('gdd')">
+                    <i class="fas fa-gamepad"></i> Game Design
+                </button>
+                <button class="nav-tab" onclick="showSection('tech')">
+                    <i class="fas fa-code"></i> Тех. Документация
+                </button>
+                <button class="nav-tab" onclick="showSection('roadmap')">
+                    <i class="fas fa-road"></i> Roadmap
+                </button>
+                <button class="nav-tab" onclick="showSection('team')">
+                    <i class="fas fa-users"></i> Команда & Контакты
+                </button>
+            </div>
+        </div>
+
+
+        <div class="main-content">
+            <div id="vision" class="content-section active">
+                <div class="card">
+                    <h2><i class="fas fa-bullseye"></i> Видение проекта</h2>
+                    <div class="project-info">
+                        <div class="info-item">
+                            <div class="label">Жанр</div>
+                            <div class="value">Бизнес-кликер</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Платформа</div>
+                            <div class="value">iOS / Android</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Движок</div>
+                            <div class="value">Unity 2022</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Статус</div>
+                            <div class="value">Pre-Alpha</div>
+                        </div>
+                    </div>
+
+                    <h3>Концепция</h3>
+                    <p>Бизнес-кликер про фермера, который случайно находит нефть на своем участке. Игрок развивает нефтяной бизнес, прокачивает оборудование и персонажа, продает нефть компаниям и расширяет свою империю.</p>
+
+                    <h3>Целевая аудитория</h3>
+                    <ul class="feature-list">
+                        <li>Возраст: 16-35 лет</li>
+                        <li>Любители казуальных игр в транспорте</li>
+                        <li>Игроки, ценящие прогресс и развитие</li>
+                        <li>Аудитория мобильных инкрементальных игр</li>
+                    </ul>
+
+                    <h3>Уникальное торговое предложение (USP)</h3>
+                    <ul class="feature-list">
+                        <li>Стиль графики в духе "Футурамы" и "Гриффинов"</li>
+                        <li>Глубокая система прокачки (насос, персонаж, окружение)</li>
+                        <li>Динамическая экономика с меняющимися ценами</li>
+                        <li>Юмористический подход к теме нефтяного бизнеса</li>
+                    </ul>
+
+                    <h3>Ключевые метрики</h3>
+                    <div class="project-info">
+                        <div class="info-item">
+                            <div class="label">Retention D1</div>
+                            <div class="value">40%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Средняя сессия</div>
+                            <div class="value">8 минут</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">CPI</div>
+                            <div class="value">&lt; $0.50</div>
+                        </div>
+                    </div>
+
+                    <h3>Монетизация</h3>
+                    <div class="project-info">
+                        <div class="info-item">
+                            <div class="label">Основная</div>
+                            <div class="value">Rewarded Ads, Interactive Ads, Playable Ads</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Вторичная</div>
+                            <div class="value">IAP (удаление рекламы)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="gdd" class="content-section">
+                <div class="card">
+                    <h2><i class="fas fa-puzzle-piece"></i> Основной геймплей</h2>
+                    <h3>Core Loop</h3>
+                    <div class="feature-list">
+                        <li><strong>Нажимать на экран</strong> → Добывать нефть</li>
+                        <li><strong>Продавать нефть</strong> → Получать деньги</li>
+                        <li><strong>Прокачивать насос/персонажа</strong> → Увеличивать эффективность</li>
+                        <li><strong>Переходить на новую локацию</strong> → Расширять бизнес</li>
+                    </div>
+
+                    <h3>Ключевые механики</h3>
+                    <ul class="feature-list">
+                        <li><strong>Активная добыча:</strong> Тап по насосу для мгновенной добычи</li>
+                        <li><strong>Пассивный доход:</strong> Автоматическая добыча в оффлайне</li>
+                        <li><strong>Торговая система:</strong> Продажа нефти компаниям по динамическим ценам</li>
+                        <li><strong>Система прокачки:</strong> 3 уровня улучшений (насос, персонаж, окружение)</li>
+                        <li><strong>Смена локаций:</strong> Новые земли с большими запасами нефти</li>
+                    </ul>
+
+                    <h3>Прогрессия игрока</h3>
+                    <div class="tree">
+                        <div class="tree-item">
+                            <i class="fas fa-industry icon"></i>
+                            <strong>Уровень 1:</strong> Небольшая ферма, ручная добыча
+                        </div>
+                        <div class="tree-item">
+                            <i class="fas fa-tachometer-alt icon"></i>
+                            <strong>Уровень 5:</strong> Автоматизация, первые улучшения
+                        </div>
+                        <div class="tree-item">
+                            <i class="fas fa-city icon"></i>
+                            <strong>Уровень 15:</strong> Собственный нефтеперерабатывающий завод
+                        </div>
+                        <div class="tree-item">
+                            <i class="fas fa-crown icon"></i>
+                            <strong>Уровень 30:</strong> Нефтяной магнат, международный бизнес
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2><i class="fas fa-chart-line"></i> Экономика игры</h2>
+                    
+                    <h3>Ресурсы</h3>
+                    <div class="project-info">
+                        <div class="info-item">
+                            <div class="label">Основной ресурс</div>
+                            <div class="value">Нефть (Oil)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Валюта</div>
+                            <div class="value">Доллары ($)</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Формула добычи нефти</h3>
+                    <div class="code-block">
+                        <span class="code-comment">// Базовая добыча за клик</span><br>
+                        public void IncreaseInOil(int <span class="code-keyword">oilCountPlus</span>, int <span class="code-keyword">TapScale</span>)<br>
+                            {<br>
+                                player.OilCount += <span class="code-keyword">oilCountPlus</span> * <span class="code-keyword">TapScale</span>;<br>
+                            }<br><br>
+                        
+                        <span class="code-comment">// Пассивная добыча в секунду</span><br>
+                        OilPerSecond = <span class="code-keyword">OilCountMine</span> × <span class="code-keyword">MineScale</span>
+                    </div>
+
+                    <h3>Ценообразование</h3>
+                    <ul class="feature-list">
+                        <li>Цены у компаний меняются каждые 2-4 часа</li>
+                        <li>Факторы: спрос, мировые события, политическая ситуация</li>
+                        <li>Каждая компания покупает ограниченное количество нефти</li>
+                        <li>Игрок должен выбирать лучшие предложения</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="tech" class="content-section">
+            <div class="card">
+                <h2><i class="fas fa-sitemap"></i> Архитектура проекта</h2>
+                
+                <h3>Структура папок</h3>
+                <div class="tree">
+                    <div class="tree-item"><i class="fas fa-folder icon"></i> Assets/
+                        <div class="tree">
+                            <div class="tree-item"><i class="fas fa-folder icon"></i> Audio/
+                                <div class="tree">
+                                    <div class="tree-item"><i class="fas fa-music icon"></i> Music/</div>
+                                    <div class="tree-item"><i class="fas fa-volume-up icon"></i> SoundFx/</div>
+                                </div>
+                            </div>
+                            <div class="tree-item"><i class="fas fa-file-alt icon"></i> Logs/ <span class="badge badge-primary">Логи игры</span></div>
+                            <div class="tree-item"><i class="fas fa-folder icon"></i> Material/
+                                <div class="tree">
+                                    <div class="tree-item"><i class="fas fa-paint-roller icon"></i> Base/</div>
+                                    <div class="tree-item"><i class="fas fa-magic icon"></i> SpecialFX/</div>
+                                </div>
+                            </div>
+                            <div class="tree-item"><i class="fas fa-folder icon"></i> Packages/
+                                <div class="tree">
+                                    <div class="tree-item"><i class="fas fa-font icon"></i> Fonts/
+                                        <div class="tree">
+                                            <div class="tree-item"><i class="fas fa-font icon"></i> RishaNeo.ttf <span class="badge badge-primary">Основной шрифт</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tree-item"><i class="fas fa-puzzle-piece icon"></i> Plugins/</div>
+                            <div class="tree-item"><i class="fas fa-cube icon"></i> Prefabs/</div>
+                            <div class="tree-item"><i class="fas fa-cogs icon"></i> ProjectSettings/</div>
+                            <div class="tree-item"><i class="fas fa-folder icon"></i> Resources/
+                                <div class="tree">
+                                    <div class="tree-item"><i class="fas fa-sliders-h icon"></i> Configuration/</div>
+                                    <div class="tree-item"><i class="fas fa-database icon"></i> Data/</div>
+                                </div>
+                            </div>
+                            <div class="tree-item"><i class="fas fa-folder icon"></i> Scenes/
+                                <div class="tree">
+                                    <div class="tree-item"><i class="fas fa-video icon"></i> SampleScene.unity <span class="badge badge-primary">Основная сцена</span></div>
+                                </div>
+                            </div>
+                            <div class="tree-item"><i class="fas fa-folder icon"></i> Scripts/
+                                <div class="tree">
+                                    <div class="tree-item"><i class="fas fa-folder icon"></i> Core/
+                                        <div class="tree">
+                                            <div class="tree-item"><i class="fas fa-file-code icon"></i> MainScr.cs <span class="badge badge-primary">Основная логика</span></div>
+                                            <div class="tree-item"><i class="fas fa-file-code icon"></i> PassiveMiner.cs <span class="badge badge-primary">Пассивный фарм</span></div>
+                                            <div class="tree-item"><i class="fas fa-file-code icon"></i> TapMiner.cs <span class="badge badge-primary">Активный фарм</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-item"><i class="fas fa-folder icon"></i> Entities/
+                                        <div class="tree">
+                                            <div class="tree-item"><i class="fas fa-folder icon"></i> Company/
+                                                <div class="tree">
+                                                    <div class="tree-item"><i class="fas fa-file-code icon"></i> CompanyConstructor.cs <span class="badge badge-primary">Конструктор компаний</span></div>
+                                                    <div class="tree-item"><i class="fas fa-file-code icon"></i> ListOfCompanies.cs <span class="badge badge-primary">Список компаний</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="tree-item"><i class="fas fa-folder icon"></i> ConvertLogic/
+                                                <div class="tree">
+                                                    <div class="tree-item"><i class="fas fa-file-code icon"></i> ConvertScript.cs <span class="badge badge-primary">Конвертация нефти</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="tree-item"><i class="fas fa-folder icon"></i> Player/
+                                                <div class="tree">
+                                                    <div class="tree-item"><i class="fas fa-file-code icon"></i> Player.cs <span class="badge badge-primary">Базовый класс игрока</span></div>
+                                                    <div class="tree-item"><i class="fas fa-file-code icon"></i> PlayerLoyalityStats.cs <span class="badge badge-primary">Прокачка статов</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-item"><i class="fas fa-folder icon"></i> Interfaces/
+                                        <div class="tree">
+                                            <div class="tree-item"><i class="fas fa-folder icon"></i> CompanyList/
+                                                <div class="tree">
+                                                    <div class="tree-item"><i class="fas fa-file-code icon"></i> InsertCompany.cs <span class="badge badge-primary">Взаимодействие с компаниями</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-item"><i class="fas fa-folder icon"></i> Utilities/</div>
+                                </div>
+                            </div>
+                            <div class="tree-item"><i class="fas fa-palette icon"></i> Shaders/</div>
+                            <div class="tree-item"><i class="fas fa-folder icon"></i> Textures/
+                                <div class="tree">
+                                    <div class="tree-item"><i class="fas fa-tree icon"></i> Environment/</div>
+                                    <div class="tree-item"><i class="fas fa-desktop icon"></i> UI/</div>
+                                </div>
+                            </div>
+                            <div class="tree-item"><i class="fas fa-folder icon"></i> UserData/
+                                <div class="tree">
+                                    <div class="tree-item"><i class="fas fa-folder icon"></i> UserStats/</div>
+                                    <div class="tree-item"><i class="fas fa-file-code icon"></i> DataManager.cs <span class="badge badge-warning">Требует доработки</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <h3>Описание ключевых классов</h3>
+        
+        <div class="code-block">
+            <span class="code-comment">// MainScr.cs - Основная логика игры</span><br>
+            <span class="code-keyword">public class</span> <span class="code-class">MainScr</span> : <span class="code-class">MonoBehaviour</span><br>
+            {<br>
+            &nbsp;&nbsp;<span class="code-comment">// Координация всех систем игры</span><br>
+            &nbsp;&nbsp;<span class="code-comment">// Управление сценами и состояниями игры</span><br>
+            &nbsp;&nbsp;<span class="code-comment">// Центральный хаб для взаимодействия между модулями</span><br>
+            }<br><br>
+            
+            <span class="code-comment">// PassiveMiner.cs - Пассивная добыча нефти</span><br>
+            <span class="code-keyword">public class</span> <span class="code-class">PassiveMiner</span> : <span class="code-class">MonoBehaviour</span><br>
+            {<br>
+            &nbsp;&nbsp;<span class="code-comment">// Расчет оффлайн-дохода на основе времени</span><br>
+            &nbsp;&nbsp;<span class="code-comment">// Интеграция с системой улучшений насоса</span><br>
+            &nbsp;&nbsp;<span class="code-comment">// Автоматическое начисление нефти</span><br>
+            }<br><br>
+            
+            <span class="code-comment">// TapMiner.cs - Активная добыча по тапу</span><br>
+            <span class="code-keyword">public class</span> <span class="code-class">TapMiner</span> : <span class="code-class">MonoBehaviour</span><br>
+            {<br>
+            &nbsp;&nbsp;<span class="code-comment">// Обработка кликов/тапов игрока</span><br>
+            &nbsp;&nbsp;<span class="code-comment">// Визуальная обратная связь (анимации)</span><br>
+            &nbsp;&nbsp;<span class="code-comment">// Расчет бонусов от прокачки</span><br>
+            }<br><br>
+            
+            <span class="code-comment">// Player.cs - Базовый класс игрока</span><br>
+            <span class="code-keyword">public class</span> <span class="code-class">Player</span> : <span class="code-class">MonoBehaviour</span><br>
+            {<br>
+            &nbsp;&nbsp;<span class="code-comment">// Хранение базовых характеристик</span><br>
+            &nbsp;&nbsp;<span class="code-comment">// Управление ресурсами (нефть, деньги)</span><br>
+            &nbsp;&nbsp;<span class="code-comment">// Прогресс и достижения</span><br>
+            }<br><br>
+            
+            <span class="code-comment">// DataManager.cs - Система сохранений (ТРЕБУЕТ ДОРАБОТКИ)</span><br>
+            <span class="code-keyword">public class</span> <span class="code-class">DataManager</span> : <span class="code-class">MonoBehaviour</span><br>
+            {<br>
+            &nbsp;&nbsp;<span class="code-comment">// TODO: Реализовать сериализацию данных</span><br>
+            &nbsp;&nbsp;<span class="code-comment">// TODO: Добавить загрузку/сохранение в файл</span><br>
+            }
+        </div>
+    </div>
+
+                <div class="card">
+                    <h2><i class="fas fa-clipboard-check"></i> Code Review Guidelines</h2>
+                    
+                    <h3>Обязательные требования</h3>
+                    <ul class="feature-list">
+                        <li><strong>Именование переменных:</strong> Понятные имена на английском</li>
+                        <li><strong>Комментарии:</strong> Сложная логика должна быть объяснена</li>
+                        <li><strong>Оптимизация:</strong> Избегать тяжелых операций в Update()</li>
+                        <li><strong>Архитектура:</strong> Новые фичи следуют существующей структуре</li>
+                    </ul>
+
+                    <h3>Проверка перед коммитом</h3>
+                    <ul class="feature-list">
+                        <li>Код компилируется без ошибок</li>
+                        <li>Нет критических багов в тестировании</li>
+                        <li>Добавлены/обновлены комментарии к новому коду</li>
+                        <li>Соблюдены соглашения по именованию</li>
+                    </ul>
+
+                    <h3>Частые проблемы</h3>
+                    <div class="project-info">
+                        <div class="info-item">
+                            <div class="label">Большие методы</div>
+                            <div class="value">Разбивать на подметоды</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Магические числа</div>
+                            <div class="value">Выносить в константы</div>
+                        </div>
+                    </div>
+
+                    <h3>Соглашения по именованию</h3>
+                    <div class="code-block">
+                        <span class="code-comment">// Приватные переменные</span><br>
+                        <span class="code-keyword">private</span> <span class="code-class">string</span> _name;<br><br>
+                        
+                        <span class="code-comment">// Публичные свойства</span><br>
+                        <span class="code-keyword">public</span> <span class="code-class">string</span> NameName { <span class="code-keyword">get</span>; <span class="code-keyword">set</span>; }<br><br>
+                        
+                        <span class="code-comment">// Локальные переменные</span><br>
+                        <span class="code-class">string</span> name = <span class="code-string">"value"</span>;
+                    </div>
+                </div>
+            </div>
+
+            <div id="roadmap" class="content-section">
+                <div class="card">
+                    <h2><i class="fas fa-calendar-alt"></i> Sprint 1 (Ближайшие 2 недели)</h2>
+                    
+                    <h3>Высокий приоритет</h3>
+                    <ul class="priority-list">
+                        <li class="priority-high">
+                            <strong>Система сохранений</strong>
+                            <p>Реализовать сохранение прогресса игры</p>
+                            <div class="project-info">
+                                <div class="info-item">
+                                    <div class="label">Что нужно: </div>
+                                    <div class="value">Хранение данных в файлах, узнать как это сделать лучше или легче и обсудить с лидом</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="priority-high">
+                            <strong>Объект насоса</strong>
+                            <p>Реализовать систему работы с насосом</p>
+                            <div class="project-info">
+                                <div class="info-item">
+                                <div class="label">Что нужно: </div>
+                                <div class="value">Насос и прописанная логика его работа. Можно без визуала как такого, главное адаптивность и гибкость для инеграции модуля</div>
+                            </div></div>
+                        </li>
+                        <li class="priority-high">
+                            <strong>GitHub настройка</strong>
+                            <p>Разобраться в Git и настроить проект</p>
+                            <div class="project-info"><div class="info-item">
+                                <div class="label">Что нужно: </div>
+                                <div class="value">Разобраться в гите, и начать работать по системе описанной в файле "DevelopInstruction_MobileMonsterTeam.html"</div>
+                            </div></div>
+                        </li>
+                    </ul>
+
+                    <h3>Средний приоритет</h3>
+                    <ul class="priority-list">
+                        <li class="priority-medium">
+                            <strong>Базовый UI</strong>
+                            <p>Создать основные интерфейсы</p>
+                        </li>
+                        <li class="priority-medium">
+                            <strong>Анимации насоса</strong>
+                            <p>Добавить визуальную обратную связь</p>
+                        </li>
+                    </ul>
+
+                    <h3>Backlog (Будущие фичи)</h3>
+                    <div class="project-info">
+                        <div class="info-item">
+                            <div class="label">Контент</div>
+                            <div class="value">Новая локация</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Прогрессия</div>
+                            <div class="value">Система достижений</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Монетизация</div>
+                            <div class="value">Интеграция рекламы</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Ретеншн</div>
+                            <div class="value">Ежедневные награды</div>
+                        </div>
+                    </div>
+
+                    <h3>Технический долг</h3>
+                    <ul class="feature-list">
+                        <li>Доработать DataManage.cs (система сохранений)</li>
+                        <li>Оптимизировать производительность для мобильных устройств</li>
+                        <li>Добавить обработку ошибок и исключений</li>
+                        <li>Создать юнит-тесты для ключевых систем</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="team" class="content-section">
+                <div class="card">
+                    <h2><i class="fas fa-users"></i> Команда проекта</h2>
+                    
+                    <h3>Роли и ответственность</h3>
+                    <div class="project-info">
+                        <div class="info-item">
+                            <div class="label">Продюсер</div>
+                            <div class="value">Рейнгардт В.А.</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Game Designer</div>
+                            <div class="value">Григорьев А.И.</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Lead Developer</div>
+                            <div class="value">Рейнгардт В.А.</div>
+                        </div>
+                    </div>
+
+                    <h3>Контакты</h3>
+                    <div class="project-info">
+                        <div class="info-item">
+                            <div class="label">Основной чат</div>
+                            <div class="value">Telegram / Discord</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Задачи</div>
+                            <div class="value">Jiro(пока думаем)</div>
+                        </div>
+                    </div>
+
+                    <h3>Регламент работы</h3>
+                    <ul class="feature-list">
+                        <li><strong>Дедлайны:</strong> Еженедельные проверки по пятницам в формате чекапа истории коммитов</li>
+                        <li><strong>Коммуникация:</strong> По вопросами проблемам тех состовляющей, писать лиду. По вопросам работы, писать кадровику</li>
+                        <li><strong>Code Review:</strong> Обязательно перед мержем в main</li>
+                        <li><strong>Демо:</strong> Показ прогресса каждые 2 недели</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2><i class="fas fa-question-circle"></i> FAQ для разработчика</h2>
+                    
+                    <h3>Вопрос: Как начать работу над проектом?</h3>
+                    <p><strong>Ответ:</strong><br>
+                    1. Клонировать репозиторий<br>
+                    2. Открыть проект в Unity 2022.3.6f1<br>
+                    3. Изучить документацию в этом файле<br>
+                    4. Взять задачу из Roadmap с высоким приоритетом</p>
+
+                    <h3>Вопрос: Куда задавать вопросы по архитектуре?</h3>
+                    <p><strong>Ответ:</strong> В Telegram-чат команды</p>
+
+                    <h3>Вопрос: Как происходит принятие решений по коду?</h3>
+                    <p><strong>Ответ:</strong> Через Code Review + обсуждение с Tech Lead</p>
+
+                    <h3>Вопрос: Где смотреть актуальные задачи?</h3>
+                    <p><strong>Ответ:</strong> В разделе Roadmap этой документации</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>The Oil Baron | Документация проекта | Версия 1.0 | Последнее обновление: <span id="currentDate"></span></p>
+            <p>© 2024 Все права защищены. Конфиденциальная информация.</p>
+            <p>Mobile Monsters <3</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ru-RU', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            
+            event.currentTarget.classList.add('active');
+            
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateTaskStatus() {
+            const statusElements = document.querySelectorAll('.badge-warning');
+            statusElements.forEach(el => {
+                const statuses = ['badge-warning', 'badge-primary', 'badge-success'];
+                const currentIndex = statuses.indexOf(el.classList[1]);
+                const nextIndex = (currentIndex + 1) % statuses.length;
+                
+                el.classList.remove(statuses[currentIndex]);
+                el.classList.add(statuses[nextIndex]);
+                
+                const statusText = {
+                    'badge-warning': 'В процессе',
+                    'badge-primary': 'В ревью', 
+                    'badge-success': 'Завершено'
+                };
+                el.textContent = statusText[statuses[nextIndex]];
+            });
+        }
+    </script>
+</body>
+</html>
