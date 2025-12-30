@@ -1,10 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ISaveLoadObject
 {
+    public string ComponentSaveId => "Player";
+    public SaveLoadData GetSaveLoadData()
+    {
+        return new SaveLoadData(
+            ComponentSaveId,
+            new object[]
+            {
+                MoneyCount,
+                OilCount,
+                TapScale,
+                UserLevelCompany,
+                Charisma,
+                Erudition,
+                Intelligence,
+                Eloquence
+            }
+        );
+    }
+    public void RestoreValues(SaveLoadData loadData)
+    {
+        var data = loadData.Data;
+        MoneyCount = Convert.ToInt32(data[0]);
+        OilCount = Convert.ToInt32(data[1]);
+        TapScale = Convert.ToInt32(data[2]);
+        UserLevelCompany = Convert.ToInt32(data[3]);
+        Charisma = Convert.ToInt32(data[4]);
+        Erudition = Convert.ToInt32(data[5]);
+        Intelligence = Convert.ToInt32(data[6]);
+        Eloquence = Convert.ToInt32(data[7]);
+    }
+
     [SerializeField] private int _moneyCount; //количество денег
     public int MoneyCount
     {
