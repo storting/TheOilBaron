@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шпаргалка по гиту - Mobile Monsters</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .git-logo {
+            font-size: 3em;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .command {
+            background: #f8f9fa;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .cheatsheet {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .cheat-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .cheat-command {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .cheat-desc {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #eee;
+        }
+        
+        .glossary {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .term {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .term strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #e9ecef;
+            border-right: 1px solid #ddd;
+        }
+        
+        .tab.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="git-logo">🐙 Git Guide</div>
+            <h1>Полный гайд по работе с Git для сотрудников</h1>
+            <p class="subtitle">Основные команды, рабочие процессы и лучшие практики</p>
+        </header>
+        
+        <div class="quick-actions">
+            <div class="card">
+                <h3>🚀 Быстрый старт</h3>
+                <p>Начинаем работу с проектом:</p>
+                <div class="command">git clone *ссылка*</div>
+                <div class="command">cd проект</div>
+                <div class="command">git checkout -b особенность/фича</div>
+                <div class="tip">
+                    <strong>Совет:</strong> Всегда создавайте ветку от актуальной develop:
+                    <div class="command">git checkout develop<br>git pull origin develop<br>git checkout -b ваша-ветка</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🔄 Ежедневные команды</h3>
+                <div class="command">git status</div>
+                <p>Проверить изменения</p>
+                
+                <div class="command">git add .</div>
+                <p>Добавить все изменения</p>
+                
+                <div class="command">git commit -m "Описание"</div>
+                <p>Закоммитить изменения</p>
+                
+                <div class="command">git push origin имя-ветки</div>
+                <p>Отправить изменения на сервер</p>
+            </div>
+            
+            <div class="card">
+                <h3>🚨 Если что-то пошло не так</h3>
+                <div class="command">git reset --soft HEAD~1</div>
+                <p>Отменить последний коммит</p>
+                
+                <div class="command">git checkout -- файл.js</div>
+                <p>Отменить изменения в файле</p>
+                
+                <div class="command">git stash</div>
+                <p>Временно сохранить изменения</p>
+                
+                <div class="warning">
+                    <strong>Внимание:</strong> git reset --hard удалит изменения безвозвратно!
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 Рабочий процесс сотрудника</h2>
+            
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Получение задачи</h4>
+                    <p>Перед началом работы убедитесь, что понимаете задачу. Если есть вопросы - задайте их в Issue или коллегам.</p>
+                    <div class="command"># Создайте ветку с понятным именем:<br>
+                    git checkout -b feature/add-user-search<br>
+                    git checkout -b fix/login-error<br>
+                    git checkout -b docs/update-readme</div>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Работа над задачей</h4>
+                    <p>Регулярно коммитьте изменения. Каждый коммит должен решать одну конкретную задачу.</p>
+                    <div class="command"># Работаете с файлами...<br>
+                    git add .<br>
+                    git commit -m "Добавил поиск по пользователям"<br><br>
+                    # Ещё немного поработали...<br>
+                    git add .<br>
+                    git commit -m "Добавил фильтрацию результатов"</div>
+                    <div class="tip">
+                        <strong>Формат сообщений коммитов:</strong><br>
+                        • Глагол в повелительном наклонении: "Add", "Fix", "Update", "Remove"<br>
+                        • Кратко и по делу
+                    </div>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Проверка перед отправкой</h4>
+                    <p>Перед коммитом всегда проверяйте свои изменения:</p>
+                    <div class="command">git status          # что изменилось?<br>
+                    git diff           # посмотреть изменения<br>
+                    git diff --cached  # что будет закоммичено</div>
+                    
+                    <p><strong>Чек-лист перед коммитом:</strong></p>
+                    <ul>
+                        <li>✅ Код работает</li>
+                        <li>✅ Тесты проходят</li>
+                        <li>✅ Нет отладочного кода (console.log)</li>
+                        <li>✅ Сообщение коммита понятное</li>
+                        <li>✅ Изменения только по задаче</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Отправка и Code Review</h4>
+                    <p>Отправьте ветку и создайте Pull Request (PR):</p>
+                    <div class="command">git push origin feature/ваша-ветка</div>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h4>Внесение правок после ревью</h4>
+                    <p>Если коллеги оставили комментарии, внесите правки:</p>
+                    <div class="command"># Вносите изменения в файлы...<br>
+                    git add .<br>
+                    git commit -m "Исправил замечания по ревью"<br>
+                    git push origin feature/ваша-ветка</div>
+                    <p>PR автоматически обновится с новыми изменениями.</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h4>Завершение работы</h4>
+                    <p>После мержа PR синхронизируйте свою локальную копию:</p>
+                    <div class="command">git checkout main<br>
+                    git pull origin main<br>
+                    git branch -d feature/ваша-ветка  # удалить локальную ветку</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 Шпаргалка команд Git</h2>
+            
+            <div class="tabs" id="tabs">
+                <div class="tab active" onclick="showTab('basic')">Основные</div>
+                <div class="tab" onclick="showTab('branch')">Ветки</div>
+                <div class="tab" onclick="showTab('undo')">Отмена</div>
+                <div class="tab" onclick="showTab('team')">Команда</div>
+            </div>
+            
+            <div class="tab-content active" id="basic-tab">
+                <div class="cheatsheet">
+                    <div class="cheat-item">
+                        <div class="cheat-command">git init</div>
+                        <div class="cheat-desc">Инициализировать новый репозиторий</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git clone URL</div>
+                        <div class="cheat-desc">Склонировать удалённый репозиторий</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git status</div>
+                        <div class="cheat-desc">Показать состояние файлов</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git add .</div>
+                        <div class="cheat-desc">Добавить все изменения</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git add файл.js</div>
+                        <div class="cheat-desc">Добавить конкретный файл</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git commit -m "текст"</div>
+                        <div class="cheat-desc">Закоммитить изменения</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git push</div>
+                        <div class="cheat-desc">Отправить изменения на сервер</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git pull</div>
+                        <div class="cheat-desc">Скачать изменения с сервера</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="branch-tab">
+                <div class="cheatsheet">
+                    <div class="cheat-item">
+                        <div class="cheat-command">git branch</div>
+                        <div class="cheat-desc">Показать все ветки</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git branch имя</div>
+                        <div class="cheat-desc">Создать новую ветку</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git checkout имя</div>
+                        <div class="cheat-desc">Переключиться на ветку</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git checkout -b имя</div>
+                        <div class="cheat-desc">Создать и переключиться</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git merge ветка</div>
+                        <div class="cheat-desc">Влить ветку в текущую</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git branch -d имя</div>
+                        <div class="cheat-desc">Удалить ветку (локально)</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git push origin --delete имя</div>
+                        <div class="cheat-desc">Удалить ветку на сервере</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git log --oneline --graph</div>
+                        <div class="cheat-desc">Показать историю с графом</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="undo-tab">
+                <div class="cheatsheet">
+                    <div class="cheat-item">
+                        <div class="cheat-command">git checkout -- файл</div>
+                        <div class="cheat-desc">Отменить изменения в файле</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git reset --soft HEAD~1</div>
+                        <div class="cheat-desc">Отменить коммит, сохранив изменения</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git reset --hard HEAD~1</div>
+                        <div class="cheat-desc">Отменить коммит и удалить изменения</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git commit --amend</div>
+                        <div class="cheat-desc">Изменить последний коммит</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git stash</div>
+                        <div class="cheat-desc">Временно сохранить изменения</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git stash pop</div>
+                        <div class="cheat-desc">Вернуть сохранённые изменения</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git revert хэш</div>
+                        <div class="cheat-desc">Создать коммит, отменяющий изменения</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="team-tab">
+                <div class="cheatsheet">
+                    <div class="cheat-item">
+                        <div class="cheat-command">git fetch</div>
+                        <div class="cheat-desc">Получить изменения с сервера</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git remote -v</div>
+                        <div class="cheat-desc">Показать удалённые репозитории</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git pull --rebase</div>
+                        <div class="cheat-desc">Обновиться с перезаписью истории</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git blame файл</div>
+                        <div class="cheat-desc">Кто и когда менял файл</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git diff ветка1..ветка2</div>
+                        <div class="cheat-desc">Сравнить две ветки</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git cherry-pick хэш</div>
+                        <div class="cheat-desc">Взять конкретный коммит</div>
+                    </div>
+                    <div class="cheat-item">
+                        <div class="cheat-command">git rebase ветка</div>
+                        <div class="cheat-desc">Перезаписать историю на другую ветку</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📖 Глоссарий Git</h2>
+            
+            <div class="glossary">
+                <div class="term">
+                    <strong>Репозиторий (Repo)</strong>
+                    <p>Хранилище проекта со всей историей изменений</p>
+                </div>
+                <div class="term">
+                    <strong>Коммит (Commit)</strong>
+                    <p>Снимок состояния проекта в определённый момент времени</p>
+                </div>
+                <div class="term">
+                    <strong>Ветка (Branch)</strong>
+                    <p>Отдельная линия разработки. По умолчанию - main</p>
+                </div>
+                <div class="term">
+                    <strong>Merge (Слияние)</strong>
+                    <p>Объединение изменений из разных веток</p>
+                </div>
+                <div class="term">
+                    <strong>Pull Request (PR)</strong>
+                    <p>Запрос на вливание изменений в основную ветку</p>
+                </div>
+                <div class="term">
+                    <strong>Staging Area</strong>
+                    <p>Область подготовленных файлов для коммита</p>
+                </div>
+                <div class="term">
+                    <strong>HEAD</strong>
+                    <p>Указатель на текущий коммит/ветку</p>
+                </div>
+                <div class="term">
+                    <strong>Origin</strong>
+                    <p>Основной удалённый репозиторий</p>
+                </div>
+                <div class="term">
+                    <strong>Fork</strong>
+                    <p>Копия чужого репозитория на вашем аккаунте</p>
+                </div>
+                <div class="term">
+                    <strong>Clone</strong>
+                    <p>Копирование репозитория с сервера на локальный компьютер</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🚫 Чего НЕ делать в Git</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>НЕ делайте</th>
+                        <th>Почему</th>
+                        <th>Что делать вместо этого</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Работать прямо в main</td>
+                        <td>Можно сломать рабочий код</td>
+                        <td>Всегда создавать ветку для задачи</td>
+                    </tr>
+                    <tr>
+                        <td>Комитить пароли/ключи</td>
+                        <td>Утечка безопасности</td>
+                        <td>Использовать .gitignore и environment variables</td>
+                    </tr>
+                    <tr>
+                        <td>Писать "фикс" в коммитах</td>
+                        <td>Непонятно что именно починили</td>
+                        <td>"Fix login error when email is empty"</td>
+                    </tr>
+                    <tr>
+                        <td>Пушить в main напрямую</td>
+                        <td>Нет code review, возможны ошибки</td>
+                        <td>Всегда через Pull Request</td>
+                    </tr>
+                    <tr>
+                        <td>Оставлять много TODO/FIXME</td>
+                        <td>Захламляет код</td>
+                        <td>Создавать Issues для технического долга</td>
+                    </tr>
+                    <tr>
+                        <td>Коммитить бинарники</td>
+                        <td>Раздувает репозиторий</td>
+                        <td>Хранить в artifact storage/CDN</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>🔧 Настройка Git</h2>
+            
+            <div class="command"># Установить имя и email<br>
+            git config --global user.name "Ваше Имя"<br>
+            git config --global user.email "ваш.email@company.com"<br><br>
+            
+            # Установить редактор по умолчанию<br>
+            git config --global core.editor "code --wait"<br><br>
+            
+            # Создать алиасы для удобства<br>
+            git config --global alias.co checkout<br>
+            git config --global alias.br branch<br>
+            git config --global alias.ci commit<br>
+            git config --global alias.st status<br>
+            git config --global alias.unstage 'reset HEAD --'<br>
+            git config --global alias.last 'log -1 HEAD'<br><br>
+            
+            # Цветной вывод<br>
+            git config --global color.ui auto</div>
+        </div>
+        
+        <div class="section">
+            <h2>📞 Если застряли</h2>
+            
+            <div class="quick-actions">
+                <div class="card">
+                    <h3>🆘 Помощь внутри Git</h3>
+                    <div class="command">git --help</div>
+                    <p>Общая справка</p>
+                    
+                    <div class="command">git команда --help</div>
+                    <p>Справка по конкретной команде</p>
+                    
+                    <div class="command">git status --help</div>
+                    <p>Подробнее о status</p>
+                </div>
+                
+                <div class="card">
+                    <h3>🔍 Поиск информации</h3>
+                    <p><strong>В интернете:</strong><br>
+                    • "git как отменить коммит"<br>
+                    • "git merge vs rebase"<br>
+                    • "git squash commits"</p>
+                    
+                    <p><strong>В команде:</strong><br>
+                    • Спросите коллегу<br>
+                    • Посмотрите как делают другие<br>
+                    • Проверьте README проекта</p>
+                </div>
+                
+                <div class="card">
+                    <h3>🛠️ Частые проблемы</h3>
+                    <p><strong>"Your branch is ahead of origin/main"</strong><br>
+                    → git push origin main</p>
+                    
+                    <p><strong>"Please commit your changes"</strong><br>
+                    → git add . && git commit -m "сообщение"</p>
+                    
+                    <p><strong>"Merge conflict"</strong><br>
+                    → Решить конфликты, затем git add . && git commit</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2024 Git Guide для сотрудников | Версия 1.0 | Последнее обновление: 7 января 2026 г.</p>
+            <p>Если что-то непонятно - спрашивайте! Лучше задать вопрос, чем сделать ошибку.</p>
+            <p>Mobile Monsters <3</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Скрыть все вкладки
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Убрать активный класс со всех вкладок
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Показать выбранную вкладку
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Сделать активной выбранную кнопку вкладки
+            event.target.classList.add('active');
+        };
+    </script>
+</body>
+</html>
