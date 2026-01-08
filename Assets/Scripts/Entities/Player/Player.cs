@@ -6,6 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class Player : MonoBehaviour, ISaveLoadObject
 {
+    public static Player Instance { get; private set; } //Мы делаем Player синглетоном
     public string ComponentSaveId => "Player";
     public SaveLoadData GetSaveLoadData()
     {
@@ -79,12 +80,12 @@ public class Player : MonoBehaviour, ISaveLoadObject
 
     public int UserLevelCompany = 1; 
 
-    public int Charisma = 1; //Харизма
-    public int Erudition = 1; //Эрудиция
-    public int Intelligence = 1; //Интелект
-    public int Eloquence = 1; //Красноречие
+    public float Charisma = 1; //Харизма. Когда ты продаешь нефть тебе падает мультикаст на полученные деньги. Денежный крит. 0.1 за лвл шанса и 5% за лвл крита базова 5% шанса и 200 % крита
+    public float Erudition = 1; //Эрудиция + 0.05 к коэффиценту стоимости нефти
+    public int Intelligence = 1; //Интелект Поднимает минимально число  CunBuyOilCount + 5 
+    public int Eloquence = 1; //Красноречие. Поднимает максимально число  CunBuyOilCount + 5 
     //В дальнейшем влияет на лояльность компании
-    
+
     public Player GetSaveData() //Выгрузить данные
     {
         return new Player
@@ -110,6 +111,18 @@ public class Player : MonoBehaviour, ISaveLoadObject
         Erudition = data.Erudition;
         Intelligence = data.Intelligence;
         Eloquence = data.Eloquence;
+    }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Если нужно сохранять между сценами
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

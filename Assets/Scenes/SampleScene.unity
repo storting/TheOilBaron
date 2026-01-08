@@ -3341,6 +3341,7 @@ GameObject:
   - component: {fileID: 716012084}
   - component: {fileID: 716012090}
   - component: {fileID: 716012089}
+  - component: {fileID: 716012092}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: EventSystem
@@ -3471,6 +3472,19 @@ MonoBehaviour:
   Erudition: 1
   Intelligence: 1
   Eloquence: 1
+--- !u!114 &716012092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716012083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6542ed6a9cd2c04469d2529f23fc1b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 716012091}
 --- !u!1 &716036662
 GameObject:
   m_ObjectHideFlags: 0
@@ -4281,7 +4295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 78.100006, y: 52.80005}
+  m_AnchoredPosition: {x: 78.099976, y: 52.80005}
   m_SizeDelta: {x: 156.1, y: 105.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &824469519
@@ -10376,7 +10390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af719b7b10f5fc149a41d5c23b5373cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 716012091}
 --- !u!114 &1887312322
 MonoBehaviour:
   m_ObjectHideFlags: 0
