@@ -51,13 +51,27 @@ public class ConvertorScript : MonoBehaviour
             if ((player.OilCount - comp.CunBuyOilCount) >= 0)
             {
                 player.OilCount = player.OilCount - comp.CunBuyOilCount;
-                temp = comp.CunBuyOilCount * comp.PriceOil;
+                if (UnityEngine.Random.Range(1, 100) <= (player.Charisma / 10) + 4.9) // проверяем попали ли мы в шанс крита
+                {
+                    temp = comp.CunBuyOilCount * (comp.PriceOil * ((player.Charisma * 5) + 195) / 100);
+                }
+                else
+                {
+                    temp = comp.CunBuyOilCount * comp.PriceOil;
+                }
                 player.MoneyCount += Convert.ToInt32(temp);
                 comp.CunBuyOilCount = 0;
             }
             else
             {
-                temp = player.OilCount * comp.PriceOil;
+                if (UnityEngine.Random.Range(1, 100) <= (player.Charisma / 10) + 4.9) // проверяем попали ли мы в шанс крита
+                {
+                    temp = player.OilCount * (comp.PriceOil * ((player.Charisma * 5) + 195) / 100);
+                }
+                else
+                {
+                    temp = player.OilCount * comp.PriceOil;
+                }
                 comp.CunBuyOilCount -= player.OilCount;
                 player.OilCount = 0;
                 player.MoneyCount += Convert.ToInt32(temp);
