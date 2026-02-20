@@ -39,9 +39,7 @@ public class MainScr : MonoBehaviour
 
     private void OnApplicationQuit() //События при выходе из игры
     {
-        Player save = player.GetSaveData();
-        Debug.Log(save);
-        DataManager.SaveData(save, "User");
+        
     }
     private void RefreshStatsMoney(int NewMoney)
     {

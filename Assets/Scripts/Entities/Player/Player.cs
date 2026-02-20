@@ -25,6 +25,7 @@ public class Player : MonoBehaviour, ISaveLoadObject
             }
         );
     }
+
     public void RestoreValues(SaveLoadData loadData)
     {
         var data = loadData.Data;
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour, ISaveLoadObject
             }
         }
     }
+
     public event System.Action<int> OnMoneyCountChanged;
 
     [SerializeField] private int _oilCount; //количество нефти
@@ -74,6 +76,7 @@ public class Player : MonoBehaviour, ISaveLoadObject
             }
         }
     }
+
     public event System.Action<int> OnOilCountChanged;
 
     public int TapScale = 1; //количество нефти за тап
@@ -86,38 +89,12 @@ public class Player : MonoBehaviour, ISaveLoadObject
     public int Eloquence = 1; //Красноречие. Поднимает максимально число  CunBuyOilCount + 5 
     //В дальнейшем влияет на лояльность компании
 
-    public Player GetSaveData() //Выгрузить данные
-    {
-        return new Player
-        {
-            MoneyCount = this.MoneyCount,
-            OilCount = this.OilCount,
-            TapScale = this.TapScale,
-            UserLevelCompany = this.UserLevelCompany,
-            Charisma = this.Charisma,
-            Erudition = this.Erudition,
-            Intelligence = this.Intelligence,
-            Eloquence = this.Eloquence
-        };
-    }
-
-    public void LoadFromData(Player data) //Загрузить данные
-    {
-        MoneyCount = data.MoneyCount;
-        OilCount = data.OilCount;
-        TapScale = data.TapScale;
-        UserLevelCompany = data.UserLevelCompany;
-        Charisma = data.Charisma;
-        Erudition = data.Erudition;
-        Intelligence = data.Intelligence;
-        Eloquence = data.Eloquence;
-    }
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Если нужно сохранять между сценами
+            //DontDestroyOnLoad(gameObject); // Если нужно сохранять между сценами
         }
         else
         {

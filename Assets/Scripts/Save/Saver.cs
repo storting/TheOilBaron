@@ -25,6 +25,7 @@ public class Saver : MonoBehaviour
     {
         _saveLoadSystem.LoadGame(SaveType.File);
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))

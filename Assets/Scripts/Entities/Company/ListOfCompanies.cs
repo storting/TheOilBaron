@@ -22,10 +22,9 @@ public class ListOfCompanies : MonoBehaviour
     public CompanyBuyOil Tatrefinans;
     public CompanyBuyOil Ikrutimetchel;
 
-    private void Awake()
+    private void Start()
     {
         Gasproff = new CompanyBuyOil(1);
-        Debug.Log(Gasproff.CunBuyOilCount);
         Lukoshnik = new CompanyBuyOil(1);
         Rospechenka = new CompanyBuyOil(2);
         Surgutka = new CompanyBuyOil(2);
@@ -41,7 +40,6 @@ public class ListOfCompanies : MonoBehaviour
     private void RefreshCompanyStats()
     {
         Gasproff = new CompanyBuyOil(1);
-        Debug.Log(Gasproff.CunBuyOilCount);
         Lukoshnik = new CompanyBuyOil(1);
         Rospechenka = new CompanyBuyOil(2);
         Surgutka = new CompanyBuyOil(2);

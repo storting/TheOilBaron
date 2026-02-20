@@ -6,17 +6,6 @@ using UnityEngine.UI;
 
 public class InsertCompany : MonoBehaviour
 {
-    enum CompanyInspector
-    {
-        Gasproff,
-        Lukoshnik,
-        Rospechenka,
-        Surgutka,
-        Bashmachnik,
-        Navatonium,
-        Russkopompas,
-        Tatorium
-    };
     public string CompanyName;
 
     private TMP_Text _companyDescription;
@@ -47,6 +36,7 @@ public class InsertCompany : MonoBehaviour
                 $"\nCunBuyOil-{_companies.Gasproff.CunBuyOilCount.ToString()}\t" +
                 $"PticeOil-{_companies.Gasproff.PriceOil.ToString()}";
             _companyDescription.text = temp;
+            Debug.Log("QWEQWE");
         }
         else if (CompanyName == "Lukoshnik")
         {
