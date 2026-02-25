@@ -29,9 +29,15 @@ public class Saver : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
-            Save();
+        {
+            Save(); 
+            Debug.Log("Save == True");
+        }
 
         if (Input.GetKeyDown(KeyCode.L))
-            Load();
+        {
+            Load(); 
+            Debug.Log("Load == True");
+        }
     }
 }

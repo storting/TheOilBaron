@@ -10,22 +10,6 @@ public class ConvertorScript : MonoBehaviour
     private ListOfCompanies _companies;
     private string _companiesName;
 
-    [SerializeField] private Player player;
-
-    void Awake()
-    {
-        if (player == null)
-        {
-            player = FindObjectOfType<Player>();
-
-            if (player == null)
-            {
-                Debug.LogError("Player не найден на сцене!");
-                return;
-            }
-        }
-    }
-
     private void Start()
     {
         _companiesName = gameObject.GetComponent<InsertCompany>().CompanyName;
@@ -45,42 +29,42 @@ public class ConvertorScript : MonoBehaviour
     }
     private void tempCompany(CompanyBuyOil comp)
     {
-        if (player.OilCount > 0)
+        if (Player.Instance.OilCount > 0)
         {
             float temp = 0;
-            if ((player.OilCount - comp.CunBuyOilCount) >= 0)
+            if ((Player.Instance.OilCount - comp.CunBuyOilCount) >= 0)
             {
-                player.OilCount = player.OilCount - comp.CunBuyOilCount;
-                if (UnityEngine.Random.Range(1, 100) <= (player.Charisma / 10) + 4.9) // проверяем попали ли мы в шанс крита
+                Player.Instance.OilCount = Player.Instance.OilCount - comp.CunBuyOilCount;
+                if (UnityEngine.Random.Range(1, 100) <= (Player.Instance.Charisma / 10) + 4.9) // проверяем попали ли мы в шанс крита
                 {
-                    temp = comp.CunBuyOilCount * (comp.PriceOil * ((player.Charisma * 5) + 195) / 100);
+                    temp = comp.CunBuyOilCount * (comp.PriceOil * ((Player.Instance.Charisma * 5) + 195) / 100);
                 }
                 else
                 {
                     temp = comp.CunBuyOilCount * comp.PriceOil;
                 }
-                player.MoneyCount += Convert.ToInt32(temp);
+                Player.Instance.MoneyCount += Convert.ToInt32(temp);
                 comp.CunBuyOilCount = 0;
             }
             else
             {
-                if (UnityEngine.Random.Range(1, 100) <= (player.Charisma / 10) + 4.9) // проверяем попали ли мы в шанс крита
+                if (UnityEngine.Random.Range(1, 100) <= (Player.Instance.Charisma / 10) + 4.9) // проверяем попали ли мы в шанс крита
                 {
-                    temp = player.OilCount * (comp.PriceOil * ((player.Charisma * 5) + 195) / 100);
+                    temp = Player.Instance.OilCount * (comp.PriceOil * ((Player.Instance.Charisma * 5) + 195) / 100);
                 }
                 else
                 {
-                    temp = player.OilCount * comp.PriceOil;
+                    temp = Player.Instance.OilCount * comp.PriceOil;
                 }
-                comp.CunBuyOilCount -= player.OilCount;
-                player.OilCount = 0;
-                player.MoneyCount += Convert.ToInt32(temp);
+                comp.CunBuyOilCount -= Player.Instance.OilCount;
+                Player.Instance.OilCount = 0;
+                Player.Instance.MoneyCount += Convert.ToInt32(temp);
                 
             }
         }
         else
         {
-            Debug.Log("Нефть = 0");
+            // Debug.Log("Нефть = 0");
         }
         InsertCompany refresh = gameObject.GetComponent<InsertCompany>();
         refresh.SetDescription();

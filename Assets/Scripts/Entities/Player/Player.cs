@@ -16,7 +16,6 @@ public class Player : MonoBehaviour, ISaveLoadObject
             {
                 MoneyCount,
                 OilCount,
-                TapScale,
                 UserLevelCompany,
                 Charisma,
                 Erudition,
@@ -31,7 +30,6 @@ public class Player : MonoBehaviour, ISaveLoadObject
         var data = loadData.Data;
         MoneyCount = Convert.ToInt32(data[0]);
         OilCount = Convert.ToInt32(data[1]);
-        TapScale = Convert.ToInt32(data[2]);
         UserLevelCompany = Convert.ToInt32(data[3]);
         Charisma = Convert.ToInt32(data[4]);
         Erudition = Convert.ToInt32(data[5]);
@@ -51,7 +49,7 @@ public class Player : MonoBehaviour, ISaveLoadObject
                 OnMoneyCountChanged?.Invoke(_moneyCount); //событие для переменной
                 if (_moneyCount >= 1000 && _moneyCount <= 1001)
                 {
-                    Debug.Log("достижение - ТЫСЯЧА ДЕНЕЕЕГ!!!");
+                    //Debug.Log("достижение - ТЫСЯЧА ДЕНЕЕЕГ!!!");
                 }
             }
         }
@@ -65,21 +63,31 @@ public class Player : MonoBehaviour, ISaveLoadObject
         get => _oilCount;
         set
         {
-            if (_oilCount != value)
+            int newValue = value;
+            int maxStorage = Pump.Instance.OilStorage;
+
+            int clampedValue = Mathf.Min(newValue, maxStorage);
+
+
+            if (_oilCount != clampedValue)
             {
-                _oilCount = value;
-                OnOilCountChanged?.Invoke(_oilCount); //событие для переменной
+                _oilCount = clampedValue;
+                OnOilCountChanged?.Invoke(_oilCount);
+
                 if (_oilCount >= 1000 && _oilCount <= 1001)
                 {
-                    Debug.Log("достижение - ТЫСЯЧА НЕФТИИИ!!!");
+                    // Достижение
                 }
+            }
+
+            if (newValue > maxStorage)
+            {
+                // Debug.Log("Хранилище переполнено!");
             }
         }
     }
 
     public event System.Action<int> OnOilCountChanged;
-
-    public int TapScale = 1; //количество нефти за тап
 
     public int UserLevelCompany = 1; 
 

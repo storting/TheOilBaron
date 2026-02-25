@@ -10,17 +10,6 @@ public class CompanyBuyOil
  
     public CompanyBuyOil(int CompanyStatus)
     {
-        if (Player.Instance == null)
-        {
-            Debug.LogError("Player не инициализирован! Проверьте:");
-            Debug.LogError("- Есть ли объект Player в сцене?");
-            Debug.LogError("- Отработал ли Awake() у Player?");
-            Debug.LogError("- Нет ли ошибок в Player.cs?");
-            // Дефолтные значения на случай ошибки
-            // PriceOil = Random.Range(1, 4);
-            // CunBuyOilCount = Random.Range(30, 200);
-            return;
-        }
         this.CompanyStatus = CompanyStatus;
         if (CompanyStatus == 1)
         {
