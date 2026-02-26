@@ -14,14 +14,9 @@ public class UpgradeManager : MonoBehaviour
             return;
         }
         Instance = this;
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(Instance);
     }
 
-    /// <summary>
-    /// Попытка улучшить характеристику.
-    /// </summary>
-    /// <param name="stat">Данные характеристики (ScriptableObject)</param>
-    /// <returns>true, если улучшение выполнено успешно</returns>
     public bool TryUpgrade(StatData stat)
     {
         if (stat == null)
@@ -54,10 +49,10 @@ public class UpgradeManager : MonoBehaviour
         // Определяем текущий уровень по имени характеристики
         switch (stat.StatName)
         {
-            case "Харизма": return Player.Instance.Charisma;
-            case "Эрудиция": return Player.Instance.Erudition;
-            case "Интеллект": return Player.Instance.Intelligence;
-            case "Красноречие": return Player.Instance.Eloquence;
+            case "ХАРИЗМА": return Player.Instance.Charisma;
+            case "ЭРУДИЦИЯ": return Player.Instance.Erudition;
+            case "ИНТЕЛЕКТ": return Player.Instance.Intelligence;
+            case "РИТОРИКА": return Player.Instance.Eloquence;
             default:
                 Debug.LogWarning($"Неизвестная характеристика: {stat.StatName}");
                 return 1;
@@ -68,10 +63,10 @@ public class UpgradeManager : MonoBehaviour
     {
         switch (stat.StatName)
         {
-            case "Харизма": Player.Instance.Charisma = level; break;
-            case "Эрудиция": Player.Instance.Erudition = level; break;
-            case "Интеллект": Player.Instance.Intelligence = level; break;
-            case "Красноречие": Player.Instance.Eloquence = level; break;
+            case "ХАРИЗМА": Player.Instance.Charisma = level; break;
+            case "ЭРУДИЦИЯ": Player.Instance.Erudition = level; break;
+            case "ИНТЕЛЕКТ": Player.Instance.Intelligence = level; break;
+            case "РИТОРИКА": Player.Instance.Eloquence = level; break;
         }
     }
 }

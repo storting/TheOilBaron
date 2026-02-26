@@ -60,15 +60,83 @@ public class Pump : MonoBehaviour
             }
         }
     }
-
     public event System.Action<int> OnOilStorageLVLChanged;
 
-    public int PumpPistonLVL = 1;
-    public int PumpElectricMotorLVL = 1;
-    public int PumpBearingsLVL = 1;
+    [SerializeField] private int _pumpPistonLVL = 1;
+    public int PumpPistonLVL
+    {
+        get => _pumpPistonLVL;
+        set
+        {
+            if (_pumpPistonLVL != value)
+            {
+                _pumpPistonLVL = value;
+                OnPumpPistonLVLChanged?.Invoke(_pumpPistonLVL);
+            }
+        }
+    }
+    public event System.Action<int> OnPumpPistonLVLChanged;
+
+    [SerializeField] private int _pumpElectricMotorLVL = 1;
+    public int PumpElectricMotorLVL
+    {
+        get => _pumpElectricMotorLVL;
+        set
+        {
+            if ( _pumpElectricMotorLVL != value)
+            {
+                _pumpElectricMotorLVL= value;
+                OnPumpElectricMotorLVLChanged?.Invoke(_pumpElectricMotorLVL);
+            }
+        }
+    }
+    public event System.Action<int> OnPumpElectricMotorLVLChanged;
+
+    [SerializeField] private int _pumpBearingsLVL = 1;
+    public int PumpBearingsLVL
+    {
+        get => _pumpBearingsLVL;
+        set
+        {
+            if( _pumpBearingsLVL != value)
+            {
+                _pumpElectricMotorLVL = value;
+                OnPumpBearingsLVLChanged?.Invoke(_pumpElectricMotorLVL);
+            }
+        }
+    }
+    public event System.Action<int> OnPumpBearingsLVLChanged;
+
     // Статы для прокачки на нефтином нассосе (active)
-    public int PumpHandlesLVL = 1;
-    public int PumpPipeVolumeLVL = 1;
+    [SerializeField] private int _pumpHandlesLVL = 1;
+    public int PumpHandlesLVL
+    {
+        get => _pumpHandlesLVL;
+        set
+        {
+            if (_pumpHandlesLVL != value)
+            {
+                _pumpHandlesLVL = value;
+                OnPumpHandlesLVLChanged?.Invoke(_pumpHandlesLVL);
+            }
+        }
+    }
+    public event System.Action<int> OnPumpHandlesLVLChanged;
+
+    [SerializeField] private int _pumpPipeVolumeLVL = 1;
+    public int PumpPipeVolumeLVL
+    {
+        get => _pumpPipeVolumeLVL;
+        set
+        {
+            if ( _pumpPipeVolumeLVL != value)
+            {
+                _pumpPipeVolumeLVL = value;
+                OnPumpPipeVolumeLVLChanged?.Invoke(_pumpPipeVolumeLVL);
+            }
+        }
+    }
+    public event System.Action<int> OnPumpPipeVolumeLVLChanged;
 
     public int OilStorage = 350; // Хранилище нефти(Максимальное количество нефти)
 
