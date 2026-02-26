@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd47c4f3d294f44eb3de127bed6ffcf, type: 3}
+  m_Name: Eloquence
+  m_EditorClassIdentifier: 
+  _statName: "\u0420\u0418\u0422\u041E\u0420\u0418\u041A\u0410"
+  _basePrice: 270
+  _priceMultiplier: 1.8

@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -68,7 +69,6 @@ public class Player : MonoBehaviour, ISaveLoadObject
 
             int clampedValue = Mathf.Min(newValue, maxStorage);
 
-
             if (_oilCount != clampedValue)
             {
                 _oilCount = clampedValue;
@@ -79,23 +79,76 @@ public class Player : MonoBehaviour, ISaveLoadObject
                     // Достижение
                 }
             }
-
             if (newValue > maxStorage)
             {
                 // Debug.Log("Хранилище переполнено!");
             }
         }
     }
-
     public event System.Action<int> OnOilCountChanged;
 
-    public int UserLevelCompany = 1; 
+    public int UserLevelCompany = 1;
 
-    public float Charisma = 1; //Харизма. Когда ты продаешь нефть тебе падает мультикаст на полученные деньги. Денежный крит. 0.1 за лвл шанса и 5% за лвл крита базова 5% шанса и 200 % крита
-    public float Erudition = 1; //Эрудиция + 0.05 к коэффиценту стоимости нефти
-    public int Intelligence = 1; //Интелект Поднимает минимально число  CunBuyOilCount + 5 
-    public int Eloquence = 1; //Красноречие. Поднимает максимально число  CunBuyOilCount + 5 
-    //В дальнейшем влияет на лояльность компании
+    [SerializeField] private int _charismaLevel = 1;
+    public int Charisma //Харизма. Когда ты продаешь нефть тебе падает мультикаст на полученные деньги. Денежный крит. 0.1 за лвл шанса и 5% за лвл крита базова 5% шанса и 200 % крита
+    {
+        get => _charismaLevel;
+        set
+        {
+            if (_charismaLevel != value)
+            {
+                _charismaLevel = value;
+                OnCharismaLevelChanged?.Invoke(value);
+            }
+        }
+    }
+    public event System.Action<int> OnCharismaLevelChanged;
+
+    [SerializeField] private int _eruditionLevel = 1;
+    public int Erudition //Эрудиция + 0.05 к коэффиценту стоимости нефти
+    {
+        get => _eruditionLevel;
+        set
+        {
+            if(_eruditionLevel != value)
+            {
+                _eruditionLevel = value;
+                OnEruditionLevelChanged?.Invoke(value);
+            }
+        }
+    }
+    public event System.Action<int> OnEruditionLevelChanged;
+
+
+    [SerializeField] private int _intelligenceLevel = 1;
+    public int Intelligence //Интелект Поднимает минимально число  CunBuyOilCount + 5 
+    {
+        get => _intelligenceLevel;
+        set
+        {
+            if (value != _intelligenceLevel)
+            {
+                _intelligenceLevel = value;
+                OnIntelligenceLevelChanged?.Invoke(value);
+            }
+        }
+    }
+    public event System.Action<int> OnIntelligenceLevelChanged;
+
+    [SerializeField] private int _eloquenceLevel = 1;
+    public int Eloquence //Красноречие. Поднимает максимально число  CunBuyOilCount + 5 
+    {
+        get => _eloquenceLevel;
+        set
+        {
+            if (_eloquenceLevel != value)
+            {
+                _eloquenceLevel = value;
+                OnEloquenceLevelChanged?.Invoke(value);
+            }
+        }
+    }
+    public event System.Action<int> OnEloquenceLevelChanged;
 
     private void Awake()
     {
