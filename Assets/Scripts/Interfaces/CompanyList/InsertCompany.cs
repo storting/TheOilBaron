@@ -21,15 +21,6 @@ public class InsertCompany : MonoBehaviour
     
     public void SetDescription()
     {
-        if (_companies.Gasproff.CunBuyOilCount <= 0)
-        {        
-            gameObject.transform.parent.GetComponent<Image>().color = new Color32(130, 130, 130, 255); 
-        }
-        else
-        {
-            gameObject.transform.parent.GetComponent<Image>().color = new Color32(183, 183, 183, 255);
-        }
-
         if (CompanyName == "Gasproff")
         {
             string temp = $"'Gasproff' : status-{_companies.Gasproff.CompanyStatus.ToString()} " +

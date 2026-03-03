@@ -53,7 +53,7 @@ public class Pump : MonoBehaviour
             if (_oilStorageLVL != value)
             {
                 _oilStorageLVL = value;
-                OnOilStorageLVLChanged?.Invoke(_oilStorageLVL); //событие дл€ переменной
+                OnOilStorageLVLChanged?.Invoke(_oilStorageLVL); 
                 {
                     OilStorage *= value; // Ўаг увеличени€ хранилища в зависимости от уровн€(ѕридумать)
                 }
@@ -100,8 +100,8 @@ public class Pump : MonoBehaviour
         {
             if( _pumpBearingsLVL != value)
             {
-                _pumpElectricMotorLVL = value;
-                OnPumpBearingsLVLChanged?.Invoke(_pumpElectricMotorLVL);
+                _pumpBearingsLVL = value;
+                OnPumpBearingsLVLChanged?.Invoke(_pumpBearingsLVL);
             }
         }
     }

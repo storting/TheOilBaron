@@ -11,27 +11,38 @@ public class StatItemView : MonoBehaviour
     [SerializeField] private TMP_Text priceText;
     [SerializeField] private Button upgradeButton;
 
-    private StatData statData;
+    private IUpgradable upgradable;
 
-    public void Initialize(StatData data)
+    private void Awake()
     {
-        statData = data;
-        nameText.text = data.StatName;
+        // если кнопка не привязана в инспекторе, привяжем программно
+        // if (upgradeButton != null)
+        //    upgradeButton.onClick.AddListener(Upgrade);
     }
 
-    public void UpdateDisplay(int currentLevel, int currentMoney)
+    public void Initialize(IUpgradable data)
+    {
+        upgradable = data;
+        nameText.text = data.DisplayName;
+    }
+
+    public void UpdateDisplay()
     {
         if (this == null || upgradeButton == null) return;
 
-        levelText.text = $"LVL.{currentLevel}";
-        int price = statData.GetPriceForLevel(currentLevel); // цена для текущего уровня
-        priceText.text = $"${price.ToString()}";
-        upgradeButton.interactable = currentMoney >= price;
+        levelText.text = $"LVL.{upgradable.CurrentLevel}";
+        priceText.text = "$" + upgradable.GetPriceForNextLevel().ToString();
+        upgradeButton.interactable = upgradable.CanUpgrade();
     }
 
     public void Upgrade()
     {
-        if (statData != null)
-            UpgradeManager.Instance.TryUpgrade(statData);
+        if (upgradable != null)
+            UpgradeManager.Instance.TryUpgrade(upgradable);
+    }
+    private void OnDestroy()
+    {
+        if (upgradeButton != null)
+            upgradeButton.onClick.RemoveListener(Upgrade);
     }
 }

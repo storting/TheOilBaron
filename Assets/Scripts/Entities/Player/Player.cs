@@ -89,6 +89,8 @@ public class Player : MonoBehaviour, ISaveLoadObject
 
     public int UserLevelCompany = 1;
 
+    // СТАТЫ ИГРОКА ВЛИЯЮЩИЕ НА МЕТРИКИ КОМПАНИЙ
+
     [SerializeField] private int _charismaLevel = 1;
     public int Charisma //Харизма. Когда ты продаешь нефть тебе падает мультикаст на полученные деньги. Денежный крит. 0.1 за лвл шанса и 5% за лвл крита базова 5% шанса и 200 % крита
     {
@@ -149,6 +151,40 @@ public class Player : MonoBehaviour, ISaveLoadObject
         }
     }
     public event System.Action<int> OnEloquenceLevelChanged;
+
+    // ОДЕЖДА ГЕРОЯ
+
+    [SerializeField] private int _headLevel = 1;
+    public int HeadLevel
+    {
+        get => _headLevel;
+        set { if (value != _headLevel) { _headLevel = value; OnHeadLevelChanged?.Invoke(value); } }
+    }
+    public event System.Action<int> OnHeadLevelChanged;
+
+    [SerializeField] private int _torsoLevel = 1;
+    public int TorsoLevel
+    {
+        get => _torsoLevel;
+        set { if (value != _torsoLevel) { _torsoLevel = value; OnTorsoLevelChanged?.Invoke(value); } }
+    }
+    public event System.Action<int> OnTorsoLevelChanged;
+
+    [SerializeField] private int _legsLevel = 1;
+    public int LegsLevel
+    {
+        get => _legsLevel;
+        set { if (value != _legsLevel) {  _legsLevel = value; OnLegsLevelChanged?.Invoke(value); } }
+    }
+    public event System.Action<int> OnLegsLevelChanged;
+
+    [SerializeField] private int _shoesLevel = 1;
+    public int ShoesLevel
+    {
+        get => _shoesLevel;
+        set { if (value != _shoesLevel) { _shoesLevel = value; OnShoesLevelChanged?.Invoke(value); } }
+    }
+    public event System.Action<int> OnShoesLevelChanged;
 
     private void Awake()
     {

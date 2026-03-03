@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d20788b0cba5f24884b37cd6a80ff2b, type: 3}
-  m_Name: OilStorage
+  m_Script: {fileID: 11500000, guid: ccd47c4f3d294f44eb3de127bed6ffcf, type: 3}
+  m_Name: Shoes
   m_EditorClassIdentifier: 
-  _statName: "\u0425\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0435"
-  _basePrice: 200
+  _statName: "\u041E\u0431\u0443\u0432\u044C"
+  _basePrice: 180
   _priceMultiplier: 1.5
+  _statType: 7
