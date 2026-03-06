@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CompanyBuyOil
 {
+    public string CompanyName;
     public float PriceOil;
     public int CunBuyOilCount;
     public int CompanyStatus;
  
-    public CompanyBuyOil(int CompanyStatus)
+    public CompanyBuyOil(int CompanyStatus, string CompanyName)
     {
         this.CompanyStatus = CompanyStatus;
+        this.CompanyName = CompanyName;
         if (CompanyStatus == 1)
         {
             PriceOil = Random.Range(1, 4) * (0.95f + (Player.Instance.Erudition * 0.05f));

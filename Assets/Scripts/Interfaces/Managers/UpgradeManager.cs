@@ -32,7 +32,7 @@ public class UpgradeManager : MonoBehaviour
         }
 
         upgradable.Upgrade();
-        Debug.Log($"Улучшено: {upgradable.DisplayName} до уровня {upgradable.CurrentLevel}");
+        // Debug.Log($"Улучшено: {upgradable.DisplayName} до уровня {upgradable.CurrentLevel}");
         return true;
     }
 }

@@ -55,7 +55,6 @@ public class Player : MonoBehaviour, ISaveLoadObject
             }
         }
     }
-
     public event System.Action<int> OnMoneyCountChanged;
 
     [SerializeField] private int _oilCount; //количество нефти

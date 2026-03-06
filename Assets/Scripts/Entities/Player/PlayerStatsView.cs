@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStatsView : MonoBehaviour
 {
-    [SerializeField] private Transform statsContainer;   // Ссылка на Content (куда складывать элементы)
+    [SerializeField] private Transform statsContainer;   // Ссылка на Content 
     [SerializeField] private StatItemView statItemPrefab; // Префаб элемента характеристики
     [SerializeField] private StatData[] availableStats;   // Массив ассетов характеристик
 
